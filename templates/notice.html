@@ -1,0 +1,57 @@
+{% extends 'nav.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+    
+        .card {
+            margin-top: 10%;
+            margin-left: 35%;
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center the content inside the card */
+        }
+    
+        textarea {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            box-sizing: border-box;
+            resize: vertical; /* Allow vertical resizing of the text area */
+        }
+    
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="card">
+        <form action="/submit_notice" method="post">
+            <label for="noticeText">Enter Notice:</label>
+            </br>
+        </br>
+            <textarea id="noticeText" name="noticeText" rows="4" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    {% endblock %}

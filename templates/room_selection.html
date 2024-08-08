@@ -1,0 +1,78 @@
+{% extends 'nav.html' %}
+
+{% block title %}View Rooms{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+
+.card {
+    margin-left: 50px; /* Adjust as needed */
+    margin-top: 10%;
+    margin-left: 35%;
+    width: 30%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+
+select {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    /* Optional: Style for the selected option */
+    select option:checked {
+        background-color: #f0f0f0;
+    }
+.card button {
+    background-color: #000000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 35%;
+}
+
+.card button:hover {
+    background-color: #000000;
+}
+</style>
+
+<body>
+
+    <div class="card">
+        <h2>Room Selection</h2>
+
+        <form action="/submit_room_selection" method="post">
+            <label for="selectedRoom">Select Room:</label>
+            <select id="selectedRoom" name="selectedRoom" required>
+                {% for room in available_rooms %}
+                    <option value="{{ room }}">{{ room.room_number }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    {% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'nav.html' %}
+
+{% block title %}Management Table{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='manage_staff.css') }}">
+
+    <div class="main">
+        <h2>Management Table</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Position</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for manager in custs %}
+                <tr>
+                    <td>{{ manager['name'] }}</td>
+                    <td>{{ manager['email'] }}</td>
+                    <td>{{ manager['mobile'] }}</td>
+                    <td class="action-buttons">
+                        <form action="/delete_manager" method="post" style="display: inline-block;">
+                            <input type="hidden" name="manager_id" value="{{ manager['_id'] }}">
+                            <button class="delete-btn" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

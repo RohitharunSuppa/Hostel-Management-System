@@ -1,0 +1,43 @@
+{% extends 'nav.html' %}
+
+{% block title %}View Rooms{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='manage_staff.css') }}">
+
+</head>
+    <div class="main">
+    <h2>Room List</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Room Name</th>
+                <th>Active</th>
+                <th>Occupied</th>
+                <th>Incharge</th>
+                <th>Amenities</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in all_rooms %}
+                <tr>
+                    <td>{{ room.room_number }}</td>
+                    <td>{{ room.total_beds }}</td>
+                    <td>{{ room.occupied }}</td>
+                    <td>{{ room.incharge }}</td>
+                    <td>{{ room.amenities|join(', ') }}</td>
+                    <td>
+                        <form action="/del_rooms" method="post">
+                            <input type="hidden" name="room_id" value="{{ room._id }}">
+                            <button class="delete-btn" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

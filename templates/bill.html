@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Bill</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.receipt-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    color: #333;
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    color: #3498db;
+}
+
+.bill-details p {
+    margin: 10px 0;
+}
+
+.payment-method {
+    margin-top: 20px;
+}
+
+.thanks-message {
+    margin-top: 20px;
+    font-style: italic;
+    color: #555;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="receipt-container">
+        <div class="header">
+            <h2>Payment Receipt</h2>
+            <hr>
+        </div>
+        <div class="bill-details">
+            <p><strong>Date:</strong> [Date Value]</p>
+            <p><strong>Time:</strong> [Time Value]</p>
+            <p><strong>Room Number:</strong> [Room Number Value]</p>
+            <p><strong>Bed Number:</strong> [Bed Number Value]</p>
+            <p><strong>Username:</strong> [Username Value]</p>
+            <p><strong>Total Price:</strong> [Price Value]</p>
+        </div>
+        <div class="payment-method">
+            <hr>
+            <p><strong>Payment Method:</strong> [Payment Method Value]</p>
+        </div>
+        <div class="thanks-message">
+            <hr>
+            <p>Thank you for choosing our service!</p>
+        </div>
+    </div>
+
+</body>
+</html>

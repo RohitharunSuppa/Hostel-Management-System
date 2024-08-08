@@ -1,0 +1,86 @@
+{% extends 'nav.html' %}
+
+{% block title %}View beds{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='manage_staff.css') }}">
+
+</head>
+<style>
+.inline-form {
+    display: inline-block;
+}
+
+.delete-btn {
+    background-color: green;
+}
+
+.delete-btn.disabled {
+    cursor: not-allowed;
+    background-color: red; /* Change to your desired color */
+}
+
+.delete-btn.disabled:hover {
+    cursor: not-allowed;
+    background-color: red; /* Change to your desired color */
+}
+
+</style>
+    <div class="main">
+    <h2>bed List</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>User</th>
+                <th>Room</th>
+                <th>Bed</th>
+                <th>Status</th>
+                <th>last Checked-in</th>
+                <th>last Checked-out</th>
+     
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for check in results %}
+                <tr>
+                    <td>{{ check.date }}</td>
+                    <td>{{ check.user }}</td>
+                    <td>{{ check.room_number }}</td>
+                    <td>{{ check.bed_no }}</td>
+                    <td>{{ check.status }}</td>
+                <td>
+                    {% if check.last_checkin_date %}
+                    Date: {{ check.last_checkin_date.strftime('%Y-%m-%d') }}<br>
+                    Time: {{ check.last_checkin_date.strftime('%H:%M:%S') }}
+                {% else %}
+                    - 
+                {% endif %}
+                </td>
+                <td>
+                    {% if check.last_checkout_date %}
+                        Date: {{ check.last_checkout_date.strftime('%Y-%m-%d') }}<br>
+                        Time: {{ check.last_checkout_date.strftime('%H:%M:%S') }}
+                    {% else %}
+                        - 
+                    {% endif %}
+                </td>   
+                <td>          
+                        <form action="/checkin" method="post" class="inline-form" {% if check.status == 'checked-in' %}disabled{% endif %}>
+                            <input type="hidden" name="bed_number" value="{{ check.bed_id }}">
+                            <button class="delete-btn {% if check.status == 'checked-in' %}disabled{% endif %}" type="submit" {% if check.status == 'checked-in' %}disabled{% endif %}>Checkin</button>
+                        </form>
+                        <form action="/checkout" method="post" class="inline-form" {% if check.status == 'checked-out' %}disabled{% endif %}>
+                            <input type="hidden" name="bed_number" value="{{ check.bed_id }}">
+                            <button class="delete-btn {% if check.status == 'checked-out' %}disabled{% endif %}" type="submit" {% if check.status == 'checked-out' %}disabled{% endif %}>Checkout</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

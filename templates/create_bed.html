@@ -1,0 +1,36 @@
+{% extends 'nav.html' %}
+
+{% block title %}Create Beds{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='create_beds.css') }}">
+
+
+
+
+
+    <form action="/submit_bed" method="post">
+        <h2>Create Beds</h2>
+        <label for="bedNumber">Bed Number:</label>
+        <input type="text" id="bedNumber" name="bedNumber" required>
+
+        <label for="bedSize">Bed Size:</label>
+        <select id="bedSize" name="bedSize">
+            <option value="queen">Queen</option>
+            <option value="twin">Twin</option>
+            <option value="king">King</option>
+        </select>
+
+        <label for="room">Room:</label>
+        <select id="room" name="room" required>
+            {% for room in available_rooms %}
+                <option value="{{ room.room_number }}">{{ room.room_number }}</option>
+            {% endfor %}
+        </select>
+        <label for="Price">Price (per month): </label>
+        <input type="text" id="Price" name="price" required>
+        <button type="submit">Create Bed</button>
+    </form>
+
+    {% endblock %}

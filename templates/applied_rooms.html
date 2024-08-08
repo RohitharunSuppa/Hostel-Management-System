@@ -1,0 +1,40 @@
+{% extends 'nav.html' %}
+
+{% block title %}View Rooms{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='manage_staff.css') }}">
+
+</head>
+    <div class="main">
+    <h2>Room List</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Room</th>
+                <th>Bed</th>
+                <th>Paid</th>
+                <th>amount</th>
+                <th>Next date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pay in user_payments %}
+
+                <tr>
+                    <td>{{ pay.user_email }}</td>
+                    <td>{{ pay.room_number }}</td>
+                    <td>{{ pay.bed_number }}</td>
+                    <td>{{ pay['current_date'].strftime('%Y-%m-%d') }}</td>
+
+                    <td>{{ pay.total }}</td>
+                    <td>{{ pay['next_payment_date'].strftime('%Y-%m-%d') }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

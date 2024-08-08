@@ -1,0 +1,53 @@
+{% extends 'nav.html' %}
+
+{% block title %}View Rooms{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='confirmation.css') }}">
+
+
+    <div class="payment-container">
+        <h2>Payment Details</h2>
+
+        <label for="totalPrice">Price per month :</label>
+        <p>${{bed.price}}</p>
+
+        <label for="totalPrice">Price for Duration:</label>
+        <p> {{months}} months, ${{total}}</p>
+
+        <label for="dates">Dates</label>
+        <p>From: {{ today }} To {{ future_date }} </p>
+
+
+        <label for="roomNumber">Room Number:</label>
+        <p>{{room.room_number}}</p>
+
+        <label for="bedNumber">Bed Number:</label>
+        <p>{{bed.bed_number}}</p>
+
+        <form action="/process_payment" method="post">
+            <label for="cardNumber">Card Number:</label>
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="Enter your card number" required>
+
+            <label for="expirationDate">Expiration Date:</label>
+            <input type="text" id="expirationDate" name="expirationDate" placeholder="MM/YY" required>
+
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" placeholder="CVV" required>
+
+            <label for="cardHolderName">Cardholder Name:</label>
+            <input type="text" id="cardHolderName" name="cardHolderName" placeholder="Enter cardholder name" required>
+            <label for="address">Address :</label>
+            <input type="text" id="address" name="address" placeholder="Enter your address" required>
+
+            <input type="hidden" name="roomNumber" value="{{room.room_number}}" required>
+            <input type="hidden" name="months" value="{{months}}" required>
+            <input type="hidden" name="total" value="{{total}}" required>
+            <input type="hidden" name="roomnumber" value="{{room.room_number}}" required>
+            <input type="hidden" name="bednumber" value="{{bed.bed_number}}" required>
+
+            <button type="submit">Pay Now</button>
+        </form>
+    </div>
+
+    {% endblock %}
