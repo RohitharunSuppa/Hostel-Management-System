@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Receipt</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='recipt.css') }}">
+</head>
+<body>
+    <div class="receipt-container">
+        <h2>Payment Receipt</h2>
+
+        <div class="receipt-section">
+            <label>Card Number:</label>
+            <p>{{ payment_data.card_number }}</p>
+        </div>
+
+        <div class="receipt-section">
+            <label>Expiration Date:</label>
+            <p>{{ payment_data.expiration_date }}</p>
+        </div>
+
+        <div class="receipt-section">
+            <label>CVV:</label>
+            <p>{{ payment_data.cvv }}</p>
+        </div>
+
+        <div class="receipt-section">
+            <label>Cardholder Name:</label>
+            <p>{{ payment_data.card_holder_name }}</p>
+        </div>
+
+        <div class="receipt-section">
+            <label>Room Number:</label>
+            <p>{{ payment_data.room_number }}</p>
+        </div>
+
+        <div class="receipt-section">
+            <label>Total Price:</label>
+            <p>${{ payment_data.total_price }}</p>
+        </div>
+
+        <div class="receipt-section">
+            <label>Duration:</label>
+            <p>{{ payment_data.months }} months</p>
+        </div>
+
+        <div class="receipt-section">
+            <label>Total Amount Paid:</label>
+            <p>${{ payment_data.total }}</p>
+        </div>
+
+        <div class="receipt-section">
+            <label>Timestamp:</label>
+            <p>{{ payment_data.timestamp }}</p>
+        </div>
+    </div>
+</body>
+</html>

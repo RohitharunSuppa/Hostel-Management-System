@@ -1,0 +1,65 @@
+{% extends 'nav.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='selected_room.css') }}">
+
+    <div class="card">
+        <h2>Room Details</h2>
+
+        <div class="form-group">
+            <label><strong>Room :</strong></label>
+            <p>{{ room.room_number }}</p>
+        </div>
+
+        <div class="form-group">
+            <label><strong>Available Beds:</strong></label>
+            <p>{{ room.total_beds }}</p>
+        </div>
+
+        <form action="/confirm_bed" method="post">
+            <div class="form-group">
+                <label for="selectedBed"><strong>Select Bed:</strong></label>
+                <select id="selectedBed" name="selectedBed" required>
+                    {% for bed in available_beds %}
+                        <option value="{{ bed.bed_number }}">{{ bed.bed_number }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <input type="hidden" name="selectedRoomNumber" value="{{ room.room_number }}">
+
+            <div class="form-group">
+                <label><strong>Amenities:</strong></label>
+                <ul>
+                    {% for amenity in room.amenities %}
+                        <li>{{ amenity }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label><strong>Bed Prices:</strong></label>
+                <ul>
+                    {% for bed in ab %}
+                        <li>{{ bed.bed_number }} - {{ bed.bed_size }}: ${{ bed.price }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label for="selectedDuration"><strong>Select Duration:</strong></label>
+                <select id="selectedDuration" name="selectedDuration" required>
+                    <option value="1">1 month</option>
+                    <option value="3">3 months</option>
+                    <option value="6">6 months</option>
+                    <option value="9">9 months</option>
+                    <option value="12">12 months</option>
+                </select>
+            </div>
+
+            <button type="submit">Book</button>
+        </form>
+    </div>
+    {% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'nav.html' %}
+
+{% block title %}View beds{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='manage_staff.css') }}">
+
+</head>
+    <div class="main">
+    <h2>bed List</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>bed Name</th>
+                <th>Size</th>
+                <th>Status</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bed in all_beds %}
+                <tr>
+                    <td>{{ bed.bed_number }}</td>
+                    <td>{{ bed.bed_size }}</td>
+                    <td>{{ bed.status }}</td>
+                    <td>${{ bed.price }}</td>
+                    <td>
+                        <form action="/del_beds" method="post">
+                            <input type="hidden" name="bed_id" value="{{ bed._id }}">
+                            <button class="delete-btn" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Card View</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_view_rooms.css') }}">
+</head>
+<body>
+
+    <div class="card-container">
+        {% for room in rooms %}
+            <div class="room-card">
+                <h3>Room {{ room.room_number }}</h3>
+                <p>Incharge: {{ room.incharge }}</p>
+                <p>Beds Left: {{ room.max_beds - room.beds_occupied }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

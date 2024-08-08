@@ -1,0 +1,64 @@
+{% extends 'nav.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <title>Your Page Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+
+        }
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .single-card-section {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        .four-by-four-card-section {
+            width: 100%;
+            box-sizing: border-box;
+            overflow: scroll;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="single-card-section">
+        <div class="card">
+            <h5>Single Card Section</h5>
+            <p><strong>User:</strong> John Doe</p>
+            <p><strong>Notice:</strong> This is a single card section.</p>
+        </div>
+    </div>
+
+    <div class="four-by-four-card-section">
+        {% for notice in notices %}
+            <div class="card">
+                <h5>{{ notice['time'] }}</h5>
+                <p><strong>User:</strong> {{ notice['username'] }}</p>
+                <p><strong>Notice:</strong> {{ notice['text'] }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    
+    {% endblock %}

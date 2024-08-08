@@ -1,0 +1,33 @@
+{% extends 'nav.html' %}
+
+{% block title %}Create Room{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='create_room.css') }}">
+   
+    <form action="/submit_room" method="post">
+        <h2>Create Room</h2>
+        <label for="roomNumber">Room Number:</label>
+        <input type="text" id="roomNumber" name="roomNumber" required>
+
+        <label for="maxBeds">Max Beds:</label>
+        <input type="number" id="maxBeds" name="maxBeds" required>
+
+        <label for="incharge">Incharge:</label>
+        <select id="incharge" name="incharge" required>
+            {% for manager in all_management %}
+                <option value="{{ manager['name'] }}">{{ manager['name'] }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Amenities:</label>
+        <div class="amenities">
+            <label><input type="checkbox" name="amenities" value="ac"> AC</label>
+            <label><input type="checkbox" name="amenities" value="television"> Television</label>
+            <label><input type="checkbox" name="amenities" value="fridge"> Fridge</label>
+            <label><input type="checkbox" name="amenities" value="bathroom"> Bathroom</label>
+        </div>
+        <button type="submit">Create Room</button>
+    </form>
+
+{% endblock %}

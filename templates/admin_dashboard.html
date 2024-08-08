@@ -1,0 +1,65 @@
+{% extends 'nav.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_dashboard.css') }}">
+    <div class="dashboard">
+        <div class="section">
+        </br>
+
+
+            <h1>Beds</h1>
+            <hr>
+        </br>
+            <div class="cards">
+                <div class="card">
+                    <a  class="crd" href="/rooms">
+                            Rooms
+                     </a>
+                    
+                    </div>
+                <div class="card">
+
+                    <a class="crd" href="/beds">
+                        Beds                    </a>
+                </div>
+
+                
+            </div>
+        </div>
+
+        <div class="section">
+            <h1>Notice</h1>
+            <hr>
+        </br>
+            <div class="cards-2">
+
+
+                <div class="card-2"><a  class="crd" href="/main_notice">
+                    Notice              
+                 </a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h1>Management</h1>
+            <hr>
+        </br>
+            <div class="cards-2">
+                <div class="card-2">
+                    <a  class="crd" href="/add_management">
+                        Add Management                   
+                     </a>
+                </div>
+
+                <div class="card-2">
+                    <a  class="crd" href="/management_table">
+                        Manage           
+                     </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

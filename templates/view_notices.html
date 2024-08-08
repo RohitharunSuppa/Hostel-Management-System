@@ -1,0 +1,55 @@
+{% extends 'nav.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+    
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 20px;
+        }
+    
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px; /* Adjusted padding for a taller card */
+            text-align: left;
+        }
+    
+        h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+    
+        p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        {% for notice in notices %}
+            <div class="card">
+                <h5>{{ notice['time'] }}</h5>
+                <p><strong>User:</strong> {{ notice['username'] }}</p>
+                <p><strong>Notice:</strong> {{ notice['text'] }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    {% endblock %}
+
+
